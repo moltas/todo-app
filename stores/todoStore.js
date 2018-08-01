@@ -1,19 +1,40 @@
-import { observable, autorun } from 'mobx';
+import { observable, action } from 'mobx';
 
-class TodoStore {
+class Todo {
     @observable
-    todos = ['buy stones', 'take a walk'];
+    value;
 
-    addTodo(item) {
-        console.log('in store adding todo', item);
-        this.todos.push(item);
+    @observable
+    id;
+
+    @observable
+    complete;
+
+    constructor(value) {
+        this.value = value;
+        this.id = Date.now();
+        this.complete = false;
     }
 }
 
-const store = new TodoStore();
+export class TodoStore {
+    @observable
+    todos = [];
 
-export default store;
+    @observable
+    todoLimit = 3;
 
-autorun(() => {
-    console.log(store.todos);
-});
+    @action
+    addTodo = item => {
+        if (this.todos.length < this.todoLimit) {
+            this.todos.push(new Todo(item));
+        }
+    };
+
+    removeTodo = item => {
+        const filteredList = this.todos.filter(todo => todo !== item);
+        this.todos = filteredList;
+    };
+}
+
+export default new TodoStore();
