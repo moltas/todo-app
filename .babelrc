@@ -16,6 +16,7 @@
                 "loose": true
             }
         ],
-        "@babel/plugin-proposal-object-rest-spread"
+        "@babel/plugin-proposal-object-rest-spread",
+        "styled-jsx/babel"
     ]
 }

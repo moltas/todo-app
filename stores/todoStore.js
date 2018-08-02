@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx';
+import { observer } from '../node_modules/mobx-react';
 
 class Todo {
     @observable
@@ -8,12 +9,12 @@ class Todo {
     id;
 
     @observable
-    complete;
+    completed;
 
     constructor(value) {
         this.value = value;
         this.id = Date.now();
-        this.complete = false;
+        this.completed = false;
     }
 }
 
@@ -24,6 +25,9 @@ export class TodoStore {
     @observable
     todoLimit = 3;
 
+    @observable
+    isAddingTodo = false;
+
     @action
     addTodo = item => {
         if (this.todos.length < this.todoLimit) {
@@ -31,9 +35,25 @@ export class TodoStore {
         }
     };
 
+    @action
     removeTodo = item => {
         const filteredList = this.todos.filter(todo => todo !== item);
         this.todos = filteredList;
+    };
+
+    @action
+    toggleCompleted = item => {
+        item.completed = !item.completed;
+    };
+
+    @action
+    openAddTodoView = () => {
+        this.isAddingTodo = true;
+    };
+
+    @action
+    closeAddTodoView = () => {
+        this.isAddingTodo = false;
     };
 }
 

@@ -4,6 +4,9 @@
         "prettier",
         "prettier/react"
     ],
+    "env": {
+        "browser": true
+    },
     "parserOptions": {
         "ecmaVersion": 7,
         "sourceType": "module",
@@ -23,6 +26,7 @@
             }
         ],
         "linebreak-style": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
         "prettier/prettier": [
             "error",
             {
