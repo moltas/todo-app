@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import '@fortawesome/fontawesome-free/js/all';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import TodoPage from '../containers/TodoPage/TodoPage';
 import authStore from '../stores/authStore';
@@ -11,10 +11,10 @@ const { isAuthenticated } = authStore;
 const Index = () => (
     <div>
         <Head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
-            <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.0/normalize.css" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
         </Head>
+        <CssBaseline />
         <div className="main-wrapper">
             <div>{isAuthenticated ? <TodoPage /> : <LoginPage />}</div>
             <style jsx global>{`
@@ -32,7 +32,7 @@ const Index = () => (
 
                 body {
                     background-color: var(--main-bg-color);
-                    font-family: 'Open Sans', sans-serif;
+                    font-family: 'Roboto', sans-serif;
                     font-size: 16px;
                 }
 

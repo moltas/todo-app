@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { AddCircle } from '@material-ui/icons';
 
 import TodoList from '../TodoList/TodoList';
 import todoStore from '../../stores/todoStore';
@@ -27,9 +28,9 @@ class DayCard extends React.Component {
                     <TodoList store={todoStore} />
                 )}
                 {todoStore.todos.length < todoStore.todoLimit ? (
-                    <button type="button" className="add-todo-button" onClick={() => todoStore.openAddTodoView()}>
-                        <i className="fas fa-plus fa-lg icon" />
-                    </button>
+                    <span role="button" tabIndex={0} className="add-todo-button" onClick={() => todoStore.openAddTodoView()}>
+                        <AddCircle style={{ fontSize: 54, backgroundColor: 'white' }} />
+                    </span>
                 ) : null}
                 <style jsx>{`
                     .container {
@@ -69,19 +70,11 @@ class DayCard extends React.Component {
                     }
 
                     .add-todo-button {
-                        background: var(--green);
-                        border: none;
-                        border-radius: 50%;
-                        width: 60px;
-                        height: 60px;
                         position: absolute;
                         bottom: -30px;
                         left: calc(50% - 30px);
                         cursor: pointer;
-                    }
-
-                    .add-todo-button .icon {
-                        color: var(--white);
+                        color: var(--green);
                     }
                 `}</style>
             </div>
